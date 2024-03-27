@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\DosenController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +19,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', function(){
+    return view('pages.admin.index',[
+        'title' => 'Admin'
+    ]);
+});
+Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index'])->name('index');
+Route::get('/admin/dosen', [DosenController::class, 'index'])->name('index');
