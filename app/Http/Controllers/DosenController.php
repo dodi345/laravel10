@@ -13,7 +13,7 @@ class DosenController extends Controller
     public function index()
     {
         return view('pages.dosen.index', [
-            'title' => 'Halaman Dosen',
+            'title' => 'Dosen',
             'dosens' => Dosen::all()
         ]);
     }
@@ -39,7 +39,10 @@ class DosenController extends Controller
      */
     public function show(Dosen $dosen)
     {
-        //
+        return view('pages.dosen.detail',[
+            'title' => 'Detail Dosen',
+            'dosen' => $dosen
+        ]);
     }
 
     /**

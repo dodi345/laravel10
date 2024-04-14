@@ -1,5 +1,4 @@
 <x-dashboard-layout>
-
     <x-slot name="title">{{ $title }}</x-slot>
     <div class="pagetitle">
         <h1>Blank Page</h1>
