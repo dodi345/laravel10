@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('matkuls', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dosen_id')->constrained('dosens', 'id');
-            $table->string('kode_matkul')->unique();
-            $table->string('nama_matkul');
+            // $table->foreignId('dosen_id')->constrained('dosens', 'id')->onDelete('cascade');
+            $table->string('code')->unique();
+            $table->string('name');
             $table->string('sks');
-            $table->enum('jenis_matkul',['MKU','MKW']);
+            $table->enum('type', ['MKU', 'MKW']);
             $table->timestamps();
         });
     }

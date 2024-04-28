@@ -18,10 +18,10 @@ class DosenFactory extends Factory
     {
         return [
             'username' => $this->faker->unique()->userName(),
-            'nama_dosen' => $this->faker->name(),
+            'name' => $this->faker->name(),
             'nip' => $this->faker->nik(),
             'email' => $this->faker->unique()->safeEmail(),
-            'no_telp' => $this->faker->phoneNumber(),
+            'telp' => $this->faker->phoneNumber(),
             'motto' => $this->faker->sentence(mt_rand(10, 20))
         ];
     }

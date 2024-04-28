@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <main id="main">
+    <main id="">
         {{ $slot }}
     </main>
 

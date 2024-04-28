@@ -35,13 +35,13 @@
                                         @csrf
 
                                         <div class="col-12">
-                                            <label for="email" class="form-label">Email</label>
+                                            <label for="username" class="form-label">Username</label>
                                             <div class="input-group has-validation">
-                                                <input type="email" name="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    id="email" required autofocus>
+                                                <input type="username" name="username"
+                                                    class="form-control @error('username') is-invalid @enderror"
+                                                    id="username" required autofocus>
                                             </div>
-                                            @error('email')
+                                            @error('username')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -66,8 +66,7 @@
                                             <button class="btn btn-primary w-100" type="submit">Login</button>
                                         </div>
                                         <div class="col-12">
-                                            <p class="small mb-0">Don't have account? <a href="/register">Create an
-                                                    account</a></p>
+                                            <p class="small mb-0">Don't have account? <a href="/register">Create an account</a></p>
                                         </div>
                                     </form>
 

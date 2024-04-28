@@ -34,25 +34,30 @@ class CustomAuthController extends Controller
 
     public function login()
     {
-        return view('auth.login', [
-            'title' => 'Login'
-        ]);
+        if (Auth::check()) {
+            return redirect('/admin');
+        }else{
+            return view('auth.login',[
+                'title' => 'Login'
+            ]);
+        }
     }
 
     public function credentials(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required | email:dns',
+            'username' => 'required',
             'password' => 'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request)) {
             $request->session()->regenerate();
             return redirect()->intended('/admin');
         }
 
         return back()->with('loginError', 'Login Gagal Boss');
     }
+
 
     public function logout(Request $request)
     {

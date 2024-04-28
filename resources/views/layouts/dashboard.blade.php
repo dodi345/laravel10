@@ -49,7 +49,7 @@
     <aside id="sidebar" class="sidebar">
         <x-sidebar-dashboard/>
     </aside><!-- End Sidebar-->
-        <main id="main" class="main">
+        <main id="main" >
             {{ $slot }}
         </main><!-- End #main -->
 
@@ -73,6 +73,8 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('vendor/NiceAdmin') }}/assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </body>
 

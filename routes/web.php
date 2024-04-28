@@ -3,8 +3,10 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\MatkulDashboardController;
 use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,9 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
 Route::get('/admin', function () {
     return view('pages.admin.index', [
@@ -35,10 +35,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/admin/mahasiswa', [MahasiswaController::class, 'index'])->name('index');
+Route::resource('admin/mahasiswas', MahasiswaController::class)->middleware('auth');
+Route::resource('admin/matkuls', MatkulDashboardController::class)->middleware('auth');
+Route::get('/admin/dosens/checkslug', [DashboardDosenController::class, 'checkSlug']);
 
-Route::get('/admin/dosen', [DosenController::class, 'index'])->name('index');
-Route::get('/admin/dosen/detail/{dosen:username}', [DosenController::class, 'show']);
+
+
+Route::resource('admin/dosens', DashboardDosenController::class)->middleware('auth');
 
 Route::get('/admin/about', [AboutController::class, 'index'])->name('index');
 Route::get('/admin/contact', [ContactController::class, 'index'])->name('index');
