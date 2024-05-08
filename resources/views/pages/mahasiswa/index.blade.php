@@ -28,7 +28,7 @@
                                 </tr>
                             </thead>
                             <tbody class="">
-                                @foreach ($dosens as $key => $dosen)
+                                @foreach ($mahasiswas as $key => $mahasiswa)
                                     <tr class="justify">
                                         <td class="text-center">{{ $dosen->id }}</td>
                                         <td>{{ $dosen->nip }}</td>

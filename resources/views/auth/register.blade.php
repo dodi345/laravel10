@@ -18,7 +18,7 @@
                                 <form class="row g-3 needs-validation" action="{{ route('register') }}" method="POST">
                                     @csrf
                                     <div class="col-12">
-                                        <label for="namae" class="form-label">Your Name</label>
+                                        <label for="name" class="form-label">Your Name</label>
                                         <input type="text" name="name" class="form-control" id="name"
                                             required>
                                         <div class="invalid-feedback">Please, enter your name!</div>

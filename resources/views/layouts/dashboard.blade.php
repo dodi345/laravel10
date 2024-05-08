@@ -29,6 +29,7 @@
   <!-- Template Main CSS File -->
   <link href="{{ asset('vendor/NiceAdmin') }}/assets/css/style.css" rel="stylesheet">
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
@@ -53,7 +54,7 @@
             {{ $slot }}
         </main><!-- End #main -->
 
-    <footer id="footer" class="footer">
+    <footer  class="footer">
         <x-footer-dashboard/>
 
     </footer><!-- End Footer -->

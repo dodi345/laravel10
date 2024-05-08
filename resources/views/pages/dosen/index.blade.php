@@ -9,7 +9,6 @@
         @endif
         <div class="row">
             <div class="col-lg-9 container">
-
                 <div class="card">
                     <div class="card-body">
                         <h3 class="card-title">Data Dosen</h3>
@@ -70,4 +69,6 @@
             </div>
         </div>
     </section>
+
+
 </x-dashboard-layout>

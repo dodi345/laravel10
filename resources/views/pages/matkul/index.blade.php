@@ -37,6 +37,10 @@
                                     <td>{{ $matkul->type }}</td>
                                     <td>
                                         <div>
+                                            <a href="/admin/matkuls/{{ $matkul->code }}">
+                                                <button class="btn btn-success btn-sm " name="view"><i
+                                                        class="bi bi-eye"></i></button>
+                                            </a>
                                             <button class="btn btn-primary btn-sm" name="edit">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>

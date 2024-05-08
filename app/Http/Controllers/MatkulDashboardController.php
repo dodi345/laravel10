@@ -52,7 +52,10 @@ class MatkulDashboardController extends Controller
      */
     public function show(Matkul $matkul)
     {
-        //
+        return view('pages.matkul.detail', [
+            'title' => 'Detail Matkul',
+            'dosen' => $matkul
+        ]);
     }
 
     /**
