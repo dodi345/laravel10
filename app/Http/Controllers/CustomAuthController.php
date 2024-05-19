@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\LoginEvent;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
+
 
 class CustomAuthController extends Controller
 {
@@ -27,7 +29,6 @@ class CustomAuthController extends Controller
         ]);
 
         User::create($validatedData);
-
         return redirect('/login')->with('success', 'Registration Successfully! Please Log In Now');
     }
 
@@ -36,8 +37,8 @@ class CustomAuthController extends Controller
     {
         if (Auth::check()) {
             return redirect('/admin');
-        }else{
-            return view('auth.login',[
+        } else {
+            return view('auth.login', [
                 'title' => 'Login'
             ]);
         }
@@ -58,6 +59,14 @@ class CustomAuthController extends Controller
         return back()->with('loginError', 'Login Gagal Boss');
     }
 
+    public function authenticated(Request $request, $user)
+    {
+        // Access request data using $request object
+        event(new LoginEvent($user->name, $user->email, $request->ip())); // Example usage
+
+        $request = Request::capture(); // Capture current request
+        $this->authenticated($request, $user);
+    }
 
     public function logout(Request $request)
     {

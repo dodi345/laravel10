@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
 {
@@ -12,21 +14,30 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $data =[
+        $users = [
             [
-                'username' => 'admin',
                 'name' => 'Dodi Sopandi',
-                'email' => 'sopandi@gmail.com',
-                'password' => bcrypt('admin123'),
-                'role' => 'admin'
-            ],
-            [
-                'username' => 'user',
-                'name' => 'Dodi ',
-                'email' => 'sopandi@gmail.com',
-                'password' => bcrypt('user1234'),
-                'role' => 'user'
-            ],
-            ];
+                'username' => 'starboy79',
+                'email' => 'dodisopandi@gmail.com',
+                'password' => Hash::make('dodi123'),
+                'role' => 'Administrator',
+            ],[
+                'name' => 'Jayadi',
+                'username' => 'starboy80',
+                'email' => 'dodi@gmail.com',
+                'password' => Hash::make('jayadi123'),
+                'role' => 'Dosen',
+            ],[
+                'name' => 'Steven',
+                'username' => 'starboy81',
+                'email' => 'steven@gmail.com',
+                'password' => Hash::make('steven123'),
+                'role' => 'Mahasiswa',
+            ]
+
+        ];
+        foreach ($users as $user) {
+            User::insert($user);
+        }
     }
 }

@@ -5,7 +5,7 @@
 
             @if ($dosen->image)
                 <div style=" max-height: 350px; overflow: hidden;">
-                    <img src="{{ asset('storage/' . $dosen->image) }}" alt="" class="img-fluid">
+                    <img src="{{ asset('storage/app/public/dosen-images' . $dosen->image) }}" alt="" class="img-fluid">
                 </div>
             @else
                 <img src="https://source.unsplash.com/1200x400?" class="card-img-top mt-3" alt="{{ $dosen->nama_dosen }}">
