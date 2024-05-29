@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('login_history', function (Blueprint $table) {
+        Schema::create('prodis', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
+            $table->string('jenjang');
+            $table->foreignId('major_id')->constrained()->restrictOnUpdate()->restrictOnDelete();
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('login_history');
+        Schema::dropIfExists('prodis');
     }
 };

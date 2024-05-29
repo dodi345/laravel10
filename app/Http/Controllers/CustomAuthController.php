@@ -42,6 +42,7 @@ class CustomAuthController extends Controller
                 'title' => 'Login'
             ]);
         }
+
     }
 
     public function credentials(Request $request)
@@ -78,4 +79,5 @@ class CustomAuthController extends Controller
 
         return redirect('/');
     }
+
 }

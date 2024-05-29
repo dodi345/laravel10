@@ -8,10 +8,10 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-lg-9 container">
+            <div class="col-lg-11 ">
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="card-title">Data Dosen</h3>
+                        <h2 class="card-title fs-4">Data Dosen</h2>
                         <a href="{{ route('dosens.create') }}">
                             <button class="btn btn-primary mb-3">
                                 <i class="bi bi-plus-circle"></i> Create New</button>
@@ -20,9 +20,13 @@
                         <table class="table datatable table-hover">
                             <thead class="text-center">
                                 <tr>
-                                    <th>No</th>
-                                    <th>NIP</th>
+                                    <th>#</th>
                                     <th>Nama</th>
+                                    <th>NIDN</th>
+                                    <th>Image</th>
+                                    <th>Mata Kuliah</th>
+                                    <th>Program Studi</th>
+                                    <th>Jurusan</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -30,20 +34,25 @@
                                 @foreach ($dosens as $key => $dosen)
                                     <tr class="justify">
                                         <td class="text-center">{{ $dosen->id }}</td>
-                                        <td>{{ $dosen->nip }}</td>
-                                        <td>{{ $dosen->name }}</td>
+                                        <td>{{ $dosen->user->name }}</td>
+                                        <td>{{ $dosen->nidn }}</td>
+                                        <td>{{ $dosen->image }}</td>
+                                        <td>{{ $dosen->course->name }}</td>
+                                        <td>{{ $dosen->prodi->name }}</td>
+                                        <td>{{ $dosen->major->name}}</td>
                                         <td>
                                             <div class="">
-                                                <a href="/admin/dosens/{{ $dosen->username }}">
-                                                    <button class="btn btn-success btn-sm " name="view"><i
-                                                            class="bi bi-eye"></i></button>
+                                                <a href="/admin/dosens/{{ $dosen->user->username }}">
+                                                    <button class="btn btn-success btn-sm " name="view">
+                                                        <i class="bi bi-eye"></i>
+                                                    </button>
                                                 </a>
-                                                <a href="/admin/dosens/{{ $dosen->username }}/edit">
+                                                <a href="/admin/dosens/{{ $dosen->user->username }}/edit">
                                                     <button class="btn btn-primary btn-sm" name="edit">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </a>
-                                                <form action="{{ route('dosens.index') }}/{{ $dosen->username }}"
+                                                <form action="{{ route('dosens.index') }}/{{ $dosen->user->username }}"
                                                     method="POST" class="d-inline">
                                                     @method('delete')
                                                     @csrf

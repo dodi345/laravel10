@@ -11,13 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('matkuls', function (Blueprint $table) {
+        Schema::create('semesters', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('dosen_id')->constrained('dosens', 'id')->onDelete('cascade');
-            $table->string('code')->unique();
-            $table->string('name');
-            $table->string('sks');
-            $table->enum('type', ['MKU', 'MKW']);
+            $table->integer('semester');
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('matkuls');
+        Schema::dropIfExists('semesters');
     }
 };

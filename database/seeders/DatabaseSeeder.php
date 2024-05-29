@@ -23,10 +23,18 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            MajorSeeder::class,
+            ProdiSeeder::class,
+            KelasSeeder::class,
+            SemesterSeeder::class,
+            CourseSeeder::class,
+            StudentSeeder::class,
+            LecturesSeeder::class,
+            AcademcSeeder::class,
+            ValueSeeder::class,
+            DetailValueSeeder::class
         ]);
-
-        // Dosen::factory(10)->create();
 
     }
 }

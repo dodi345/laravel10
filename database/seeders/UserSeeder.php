@@ -16,24 +16,32 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                'name' => 'Dodi Sopandi',
+                'name' => 'Administrator',
                 'username' => 'starboy79',
                 'email' => 'dodisopandi@gmail.com',
                 'password' => Hash::make('dodi123'),
-                'role' => 'Administrator',
+                'role' => 'administrator',
             ],[
                 'name' => 'Jayadi',
                 'username' => 'starboy80',
-                'email' => 'dodi@gmail.com',
+                'email' => 'jayadi@gmail.com',
                 'password' => Hash::make('jayadi123'),
-                'role' => 'Dosen',
-            ],[
+                'role' => 'dosen',
+            ],
+            [
                 'name' => 'Steven',
                 'username' => 'starboy81',
                 'email' => 'steven@gmail.com',
                 'password' => Hash::make('steven123'),
-                'role' => 'Mahasiswa',
-            ]
+                'role' => 'mahasiswa',
+            ],
+            [
+                'name' => 'Dodi Sopandi',
+                'username' => 'dodisopandi',
+                'email' => 'dodi@gmail.com',
+                'password' => Hash::make('dodi123'),
+                'role' => 'dosen',
+            ],
 
         ];
         foreach ($users as $user) {

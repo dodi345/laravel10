@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+use App\Models\Course;
+use App\Models\Lecturer;
+use App\Models\Major;
+use App\Models\Prodi;
+use App\Models\User;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -16,7 +20,7 @@ class DashboardDosenController extends Controller
     {
         return view('pages.dosen.index', [
             'title' => 'Dosen',
-            'dosens' => Dosen::all()
+            'dosens' => Lecturer::get()->all()
         ]);
     }
 
@@ -26,7 +30,8 @@ class DashboardDosenController extends Controller
     public function create()
     {
         $data = [
-            'title' => 'Create Dosen Data'
+            'title' => 'Create Dosen Data',
+
         ];
 
         return view('pages.dosen.create', $data);
@@ -37,28 +42,36 @@ class DashboardDosenController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'username' => 'required|unique:dosens',
-            'nip' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:20',
-            'email' => ['required', 'email:dns'],
-            'telp' => 'required|max:12|regex:/^([0-9\s\-\+\(\)]*)$/',
-            'image' => ['image', 'file', 'max:2048'],
-            'motto' => ['required', 'max:255']
+        $request->validate([
+            'name' => 'required',
+            'nidn' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:20',
+            'image' => ['required','file','image:png, jpg, jpeg', 'max:2048'],
+            'course_id' => 'required',
+            'prodi_id' => 'required',
+            'major_id' => 'required'
+
         ]);
 
-        if ($request->file('image')) {
-            $validatedData['image'] = $request->file('image')->store('dosen-images');
-        }
+         $image = $request->file('image')->store('dosen-images');
 
-        Dosen::create($validatedData);
+
+        Lecturer::create([
+            'user_id' => auth()->user()->id,
+            'name' => $request->name,
+            'nidn' => $request->nidn,
+            'image' =>  "storage/$image",
+            'course_id' => $request->course_id,
+            'prodi_id' => $request->prodi_id,
+            'major_id' => $request->major_id
+        ]
+        );
         return redirect('/admin/dosens')->with('success', 'Dosen has been added');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Dosen $dosen)
+    public function show(Lecturer $dosen)
     {
         return view('pages.dosen.detail', [
             'title' => 'Detail Dosen',
@@ -69,7 +82,7 @@ class DashboardDosenController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Dosen $dosen)
+    public function edit(Lecturer $dosen)
     {
         return view('pages.dosen.edit', [
             'title' => 'Edit Data',
@@ -80,7 +93,7 @@ class DashboardDosenController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Dosen $dosen)
+    public function update(Request $request, Lecturer $dosen)
     {
         $rules = [
             'name' => 'required|max:255',
@@ -105,7 +118,7 @@ class DashboardDosenController extends Controller
             $validatedData['image'] = $request->file('image')->store('dosen-images');
         }
 
-        Dosen::where('id', $dosen->id)
+        Lecturer::where('id', $dosen->id)
             ->update($validatedData);
 
         return redirect('/admin/dosens')->with('success', 'Dosen has been updated');
@@ -114,12 +127,12 @@ class DashboardDosenController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Dosen $dosen)
+    public function destroy(Lecturer $dosen)
     {
         if ($dosen->image) {
             Storage::delete($dosen->image);
         }
-        Dosen::destroy($dosen->id);
+        Lecturer::destroy($dosen->id);
         return redirect('/admin/dosens')->with('success', 'Dosen has been deleted');
     }
 }

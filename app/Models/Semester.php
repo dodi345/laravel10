@@ -7,14 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Matkul extends Model
+class Semester extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
-    
-    public function dosen() :HasMany
+
+    public function value(): BelongsTo
     {
-        return $this->hasMany(Dosen::class, 'dosen_id');
+        return $this->belongsTo(Value::class);
     }
+
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+
 }

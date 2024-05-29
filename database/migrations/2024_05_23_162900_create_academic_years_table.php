@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dosens', function (Blueprint $table) {
+        Schema::create('academic_years', function (Blueprint $table) {
             $table->id();
-            $table->string('username', 50)->unique();
-            $table->string('name', 255);
-            $table->string('nip')->unique();
-            $table->string('email', 255);
-            $table->string('telp');
-            $table->text('motto');
-            $table->string('image')->nullable();
+            $table->year('years');
             $table->timestamps();
         });
     }
@@ -29,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dosens');
+        Schema::dropIfExists('academic_years');
     }
 };

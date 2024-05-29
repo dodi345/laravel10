@@ -4,14 +4,14 @@
 
         <div class="card-body ">
             <h5 class="card-title">Edit Data Dosen</h5>
-            <form action="{{ route('dosens.store') }}/{{ $dosen->username }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('dosens.store') }}/{{ $dosen->user->username }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
                 <div class="row mb-3">
-                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <label for="name" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                            id="name" value="{{ old('name', $dosen->name) }}" required>
+                            id="name" value="{{ old('name', $dosen->user->name) }}" required>
                         @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}

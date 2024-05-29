@@ -1,14 +1,4 @@
 <ul class="sidebar-nav" id="sidebar-nav">
-{{-- 
-    <li class="nav-item">
-        <a class="nav-link collapsed " href="/admin" >
-            <i class="bi bi-grid"></i>
-            <span>Dashboard</span>
-        </a>
-    </li>
-
-     --}}
-
 
     <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav-dosen" data-bs-toggle="collapse" href="#">
@@ -23,7 +13,7 @@
         </ul>
     </li><!-- End Dosen Forms Nav -->
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav-student" data-bs-toggle="collapse" href="#">
             <i class="bi bi-journal-text"></i><span>Mahasiswa</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -36,9 +26,9 @@
             </li>
 
         </ul>
-    </li><!-- End Student Forms Nav -->
+    </li><!-- End Student Forms Nav --> --}}
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-nav-matkul" data-bs-toggle="collapse" href="#">
             <i class="bi bi-journal-text"></i><span>Mata Kuliah</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -51,4 +41,5 @@
             </li>
 
         </ul>
-    </li><!-- End Student Forms Nav -->
+    </li><!-- End Student Forms Nav --> --}}
+</ul>

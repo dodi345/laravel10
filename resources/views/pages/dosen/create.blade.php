@@ -44,35 +44,11 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="nip" class="col-sm-2 col-form-label">NIP</label>
+                    <label for="nidn" class="col-sm-2 col-form-label">NIDN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror"
-                            id="nip" value="{{ old('nip') }}" required>
-                        @error('nip')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="telp" class="col-sm-2 col-form-label">No Telp</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="telp" class="form-control @error('telp') is-invalid @enderror"
-                            id="telp" value="{{ old('telp') }}" required>
-                        @error('telp')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="motto" class="col-sm-2 col-form-label">Motto</label>
-                    <div class="col-sm-10">
-                        <textarea type="text" name="motto" class="form-control @error('motto') is-invalid @enderror" id="motto"
-                            value="{{ old('motto') }}" required></textarea>
-                        @error('motto')
+                        <input type="text" name="nidn" class="form-control @error('nidn') is-invalid @enderror"
+                            id="nidn" value="{{ old('nidn') }}" required>
+                        @error('nidn')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>

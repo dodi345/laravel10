@@ -6,7 +6,6 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardDosenController;
 use App\Http\Controllers\MatkulDashboardController;
@@ -36,13 +35,10 @@ Route::get('/', function () {
     ]);
 });
 
-Route::resource('admin/mahasiswas', MahasiswaController::class)->middleware('auth');
+
 Route::resource('admin/matkuls', MatkulDashboardController::class)->middleware('auth');
 Route::get('/admin/dosens/checkslug', [DashboardDosenController::class, 'checkSlug']);
-
-
-
-Route::resource('admin/dosens', DashboardDosenController::class)->middleware('auth');
+Route::resource('admin/dosens', DashboardDosenController::class)->middleware(['auth']);
 
 Route::get('/admin/about', [AboutController::class, 'index'])->name('index');
 Route::get('/admin/contact', [ContactController::class, 'index'])->name('index');
