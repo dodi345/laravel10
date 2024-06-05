@@ -15,18 +15,23 @@ class MajorSeeder extends Seeder
     {
         $majors = [
             [
+                'uuid' => uuid_create(),
                 'name' => 'Teknologi Informasi dan Komputer'
             ],
             [
+                'uuid' => uuid_create(),
                 'name' => 'Pertanian'
             ],
             [
+                'uuid' => uuid_create(),
                 'name' => 'Kesehatan'
             ],
             [
+                'uuid' => uuid_create(),
                 'name' => 'Teknik Mesin'
             ],
             [
+                'uuid' => uuid_create(),
                 'name' => 'Teknik Nuklir'
             ],
         ];

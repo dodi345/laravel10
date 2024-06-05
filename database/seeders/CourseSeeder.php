@@ -15,6 +15,7 @@ class CourseSeeder extends Seeder
     {
         $courses = [
             [
+                'uuid' => uuid_create(),
                 'code' => 'MKW001',
                 'name' => 'Pemrograman Web',
                 'semester_id' => '4',
@@ -22,6 +23,7 @@ class CourseSeeder extends Seeder
                 'prodi_id' => '3'
             ],
             [
+                'uuid' => uuid_create(),
                 'code' => 'MKW002',
                 'name' => 'Data Warehouse',
                 'semester_id' => '3',

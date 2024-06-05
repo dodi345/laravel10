@@ -20,7 +20,7 @@ class DashboardDosenController extends Controller
     {
         return view('pages.dosen.index', [
             'title' => 'Dosen',
-            'dosens' => Lecturer::get()->all()
+            'dosens' => Lecturer::get()->all(),
         ]);
     }
 
@@ -31,6 +31,10 @@ class DashboardDosenController extends Controller
     {
         $data = [
             'title' => 'Create Dosen Data',
+            'courses' => Course::get()->all(),
+            'majors' => Major::get()->all(),
+            'prodis' => Prodi::get()->all(),
+            'dosen' => User::get()->all()
 
         ];
 
@@ -45,25 +49,26 @@ class DashboardDosenController extends Controller
         $request->validate([
             'name' => 'required',
             'nidn' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:20',
-            'image' => ['required','file','image:png, jpg, jpeg', 'max:2048'],
+            'image' => ['required', 'file', 'image:png,jpg,jpeg', 'max:2048'],
             'course_id' => 'required',
             'prodi_id' => 'required',
             'major_id' => 'required'
 
         ]);
 
-         $image = $request->file('image')->store('dosen-images');
+        $request['user_id'] = auth()->user()->id;
+        $image = $request->file('image')->store('dosen-images');
 
-
-        Lecturer::create([
-            'user_id' => auth()->user()->id,
-            'name' => $request->name,
-            'nidn' => $request->nidn,
-            'image' =>  "storage/$image",
-            'course_id' => $request->course_id,
-            'prodi_id' => $request->prodi_id,
-            'major_id' => $request->major_id
-        ]
+        Lecturer::create(
+            [
+                'uuid' => uuid_create(),
+                'name' => $request->name,
+                'nidn' => $request->nidn,
+                'image' =>  "storage/$image",
+                'course_id' => $request->course_id,
+                'prodi_id' => $request->prodi_id,
+                'major_id' => $request->major_id
+            ]
         );
         return redirect('/admin/dosens')->with('success', 'Dosen has been added');
     }
@@ -86,7 +91,10 @@ class DashboardDosenController extends Controller
     {
         return view('pages.dosen.edit', [
             'title' => 'Edit Data',
-            'dosen' => $dosen
+            'dosen' => $dosen,
+            'courses' => Course::get()->all(),
+            'majors' => Major::get()->all(),
+            'prodis' => Prodi::get()->all()
         ]);
     }
 
@@ -95,31 +103,33 @@ class DashboardDosenController extends Controller
      */
     public function update(Request $request, Lecturer $dosen)
     {
-        $rules = [
-            'name' => 'required|max:255',
-            // 'username' => 'required|unique:dosens',
-            'nip' => ['required', 'max:20'],
-            'email' => ['required', 'email:dns'],
-            'telp' => 'required|max:20',
-            'image' => ['image', 'file', 'max:2048'],
-            'motto' => ['required', 'max:255']
-        ];
+        $request->validate([
+            'name' => 'required',
+            'nidn' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|max:20',
+            'image' => ['image:png, jpg, jpeg', 'max:2048'],
+            'course_id' => 'required',
+            'prodi_id' => 'required',
+            'major_id' => 'required'
 
-        if ($request->username != $dosen->username) {
-            $rules['username'] = 'required|unique:dosens';
-        }
+        ]);
 
-        $validatedData = $request->validate($rules);
-
+        $image = null;
         if ($request->file('image')) {
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validatedData['image'] = $request->file('image')->store('dosen-images');
+            $image = $request->file('image')->store('dosen-images');
         }
-
         Lecturer::where('id', $dosen->id)
-            ->update($validatedData);
+            ->update([
+                // 'user_id' => auth()->user()->id,
+                'name' => $request->name,
+                'nidn' => $request->nidn,
+                'image' => $image ? "storage/$image" : $dosen->image,
+                'course_id' => $request->course_id,
+                'prodi_id' => $request->prodi_id,
+                'major_id' => $request->major_id
+            ]);
 
         return redirect('/admin/dosens')->with('success', 'Dosen has been updated');
     }

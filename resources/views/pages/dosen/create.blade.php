@@ -7,37 +7,12 @@
             <form action="{{ route('dosens.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row mb-3">
-                    <label for="name" class="col-sm-2 col-form-label">Name</label>
+                    <label for="name" class="col-sm-2 col-form-label">Nama</label>
                     <div class="col-sm-10">
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                             id="name" value="{{ old('name') }}" required>
                         @error('name')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="username" class="col-sm-2 col-form-label">Username</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="username"
-                            class="form-control @error('username') is-invalid @enderror" id="username"
-                            value="{{ old('username') }}" required>
-                        @error('username')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <label for="email" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror "
-                            id="email" value="{{ old('email') }}" required>
-                        @error('email')
-                            <div class="invalid-feedback">
+                            <div class="invalid-feedback">.
                                 {{ $message }}
                             </div>
                         @enderror
@@ -46,13 +21,43 @@
                 <div class="row mb-3">
                     <label for="nidn" class="col-sm-2 col-form-label">NIDN</label>
                     <div class="col-sm-10">
-                        <input type="text" name="nidn" class="form-control @error('nidn') is-invalid @enderror"
+                        <input type="number" name="nidn" class="form-control @error('nidn') is-invalid @enderror"
                             id="nidn" value="{{ old('nidn') }}" required>
                         @error('nidn')
                             <div class="invalid-feedback">
                                 {{ $message }}
                             </div>
                         @enderror
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="course_id" class="col-sm-2 col-form-label">Mata Kuliah</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="course_id">
+                            @foreach ($courses as $course)
+                                    <option class="ms-3" value="{{ $course->id }}" selected>{{ $course->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="course_id" class="col-sm-2 col-form-label">Program Studi</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="prodi_id">
+                            @foreach ($prodis as $prodi)
+                                    <option class="ms-3" value="{{ $prodi->id }}" selected>{{ $prodi->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="course_id" class="col-sm-2 col-form-label">Jurusan</label>
+                    <div class="col-sm-10">
+                        <select class="form-select" aria-label="Default select example" name="major_id">
+                            @foreach ($majors as $major)
+                                    <option class="ms-3" value="{{ $major->id }}" selected>{{ $major->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <div class="row mb-3">

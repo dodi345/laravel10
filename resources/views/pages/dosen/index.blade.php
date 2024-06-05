@@ -31,28 +31,29 @@
                                 </tr>
                             </thead>
                             <tbody class="">
+                                <?php $no = 1;?>
                                 @foreach ($dosens as $key => $dosen)
                                     <tr class="justify">
-                                        <td class="text-center">{{ $dosen->id }}</td>
-                                        <td>{{ $dosen->user->name }}</td>
+                                        <td class="text-center">{{ $no++ }}</td>
+                                        <td>{{ $dosen->name }}</td>
                                         <td>{{ $dosen->nidn }}</td>
-                                        <td>{{ $dosen->image }}</td>
+                                        <td><img src="{{ asset($dosen->image) }}" height="60"; width="60" class="rounded-circle"></td>
                                         <td>{{ $dosen->course->name }}</td>
                                         <td>{{ $dosen->prodi->name }}</td>
                                         <td>{{ $dosen->major->name}}</td>
                                         <td>
                                             <div class="">
-                                                <a href="/admin/dosens/{{ $dosen->user->username }}">
+                                                <a href="/admin/dosens/{{ $dosen->uuid }}">
                                                     <button class="btn btn-success btn-sm " name="view">
                                                         <i class="bi bi-eye"></i>
                                                     </button>
                                                 </a>
-                                                <a href="/admin/dosens/{{ $dosen->user->username }}/edit">
+                                                <a href="/admin/dosens/{{ $dosen->uuid }}/edit">
                                                     <button class="btn btn-primary btn-sm" name="edit">
                                                         <i class="bi bi-pencil-square"></i>
                                                     </button>
                                                 </a>
-                                                <form action="{{ route('dosens.index') }}/{{ $dosen->user->username }}"
+                                                <form action="{{ route('dosens.index') }}/{{ $dosen->uuid }}"
                                                     method="POST" class="d-inline">
                                                     @method('delete')
                                                     @csrf

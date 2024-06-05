@@ -1,5 +1,5 @@
 <x-dashboard-layout>
-    <x-slot name="title">{{ $title }}</x-slot>
+    <x-slot name='title'>{{ $title }}</x-slot>
     <section class="section">
         @if (session()->has('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -8,14 +8,14 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12">
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Data Mahasiswa</h5>
-                                <a href="{{ route('mahasiswa.create') }}">
+                                <h5 class="card-title">Data Jurusan</h5>
+                                <a href="{{ route('major.create') }}">
                                     <button class="btn btn-primary mb-3">
                                         <i class="bi bi-plus-circle"></i> Create New</button>
                                 </a>
@@ -28,38 +28,28 @@
                                             <th>
                                                 <b>N</b>ame
                                             </th>
-                                            <th>NIM</th>
-                                            <th>Kelas</th>
-                                            <th>Jurusan</th>
-                                            <th>Program Studi</th>
-                                            <th>Semester</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="">
                                         <?php $no = 1;?>
-                                        @foreach ($students as $key => $student)
+                                        @foreach ($majors as $key => $major)
                                             <tr class="">
                                                 <td class="text-center">{{ $no++ }}</td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>{{ $student->nim }}</td>
-                                                <td>{{ $student->kelas->kelas }}</td>
-                                                <td>{{ $student->prodi->name }}</td>
-                                                <td>{{ $student->major->name}}</td>
-                                                <td>{{ $student->semester->semester}}</td>
+                                                <td>{{ $major->name }}</td>
                                                 <td>
                                                     <div class="">
-                                                        <a href="/admin/mahasiswa/{{ $student->uuid }}">
+                                                        <a href="/admin/major/{{ $major->uuid }}">
                                                             <button class="btn btn-success btn-sm " name="view">
                                                                 <i class="bi bi-eye"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="/admin/mahasiswa/{{ $student->uuid }}/edit">
+                                                        <a href="/admin/major{{ $major->uuid }}/edit">
                                                             <button class="btn btn-primary btn-sm" name="edit">
                                                                 <i class="bi bi-pencil-square"></i>
                                                             </button>
                                                         </a>
-                                                        <form action="{{ route('mahasiswa.index') }}/{{ $student->uuid }}"
+                                                        <form action="{{ route('prodi.index') }}/{{ $major->uuid }}"
                                                             method="POST" class="d-inline">
                                                             @method('delete')
                                                             @csrf

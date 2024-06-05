@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Dosen;
+
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -11,6 +12,7 @@ class PagesController extends Controller
     {
         $data =[
             'title' => 'Admin Page',
+            'totalusers' => User::count()
 
         ];
         return view('pages.admin.index', $data);
@@ -21,6 +23,6 @@ class PagesController extends Controller
         $data = [
             'title' => 'User Page'
         ];
-        return view('pages.user.index');
+        return view('pages.user.index', $data);
     }
 }

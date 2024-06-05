@@ -11,6 +11,7 @@ class Course extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['semester'];
 
 
     public function lecturer(): HasMany
@@ -28,8 +29,8 @@ class Course extends Model
         return $this->belongsTo(kelas::class);
     }
 
-    public function semester(): HasMany
+    public function semester(): BelongsTo
     {
-        return $this->hasMany(Semester::class);
+        return $this->belongsTo(Semester::class);
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use PHPUnit\Framework\MockObject\Builder\Stub;
 
 class Semester extends Model
 {
@@ -17,9 +18,14 @@ class Semester extends Model
         return $this->belongsTo(Value::class);
     }
 
-    public function course(): BelongsTo
+    public function course(): HasMany
     {
-        return $this->belongsTo(Course::class);
+        return $this->hasMany(Course::class);
+    }
+
+    public function student(): HasMany
+    {
+        return $this->hasMany(Student::class);
     }
 
 

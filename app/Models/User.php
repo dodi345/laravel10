@@ -45,9 +45,9 @@ class User extends Authenticatable
         return $this->hasMany(Student::class);
     }
 
-    public function lecturers(): HasMany
+    public function getRouteKeyName()
     {
-        return $this->hasMany(Lecturer::class);
+        return 'username';
     }
 
 }

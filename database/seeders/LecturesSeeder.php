@@ -15,18 +15,11 @@ class LecturesSeeder extends Seeder
     {
         $lectures = [
             [
-                'name' => 'Dodi Sopandi',
+                'name' => 'Jayadi',
                 'nidn' => '12345673',
                 'course_id' => '1',
                 'prodi_id' => '2',
                 'major_id' => '3'
-            ],
-            [
-                'name' => 'Dodi Sopandi',
-                'nidn' => '12345674',
-                'course_id' => '2',
-                'prodi_id' => '4',
-                'major_id' => '2'
             ],
         ];
         foreach($lectures as $lecture){

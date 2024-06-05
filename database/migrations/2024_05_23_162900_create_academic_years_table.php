@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('academic_years', function (Blueprint $table) {
             $table->id();
             $table->year('years');
+            $table->enum('tahun',['genap','ganjil']);
             $table->timestamps();
         });
     }

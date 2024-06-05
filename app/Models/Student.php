@@ -11,6 +11,7 @@ class Student extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+    protected $with = ['user','major','prodi','kelas','semester'];
 
     public function user(): BelongsTo
     {
@@ -27,8 +28,21 @@ class Student extends Model
         return $this->belongsTo(Prodi::class);
     }
 
+    public function kelas(): BelongsTo
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+    public function semester(): BelongsTo
+    {
+        return $this->belongsTo(Semester::class);
+    }
+
     public function valuedetail(): HasMany
     {
         return $this->hasMany(ValueDetail::class);
+    }
+    public function getRouteKeyName()
+    {
+        return 'uuid';
     }
 }

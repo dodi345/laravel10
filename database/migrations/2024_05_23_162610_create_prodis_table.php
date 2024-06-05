@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('prodis', function (Blueprint $table) {
             $table->id();
+            $table->uuid();
             $table->string('name');
             $table->string('jenjang');
             $table->foreignId('major_id')->constrained()->restrictOnUpdate()->restrictOnDelete();

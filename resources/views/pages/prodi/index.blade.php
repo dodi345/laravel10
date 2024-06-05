@@ -14,8 +14,8 @@
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Data Mahasiswa</h5>
-                                <a href="{{ route('mahasiswa.create') }}">
+                                <h5 class="card-title">Data Program Studi</h5>
+                                <a href="{{ route('prodi.create') }}">
                                     <button class="btn btn-primary mb-3">
                                         <i class="bi bi-plus-circle"></i> Create New</button>
                                 </a>
@@ -28,38 +28,32 @@
                                             <th>
                                                 <b>N</b>ame
                                             </th>
-                                            <th>NIM</th>
-                                            <th>Kelas</th>
+                                            <th>Jenjang</th>
                                             <th>Jurusan</th>
-                                            <th>Program Studi</th>
-                                            <th>Semester</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody class="">
                                         <?php $no = 1;?>
-                                        @foreach ($students as $key => $student)
+                                        @foreach ($prodis as $key => $prodi)
                                             <tr class="">
                                                 <td class="text-center">{{ $no++ }}</td>
-                                                <td>{{ $student->name }}</td>
-                                                <td>{{ $student->nim }}</td>
-                                                <td>{{ $student->kelas->kelas }}</td>
-                                                <td>{{ $student->prodi->name }}</td>
-                                                <td>{{ $student->major->name}}</td>
-                                                <td>{{ $student->semester->semester}}</td>
+                                                <td>{{ $prodi->name }}</td>
+                                                <td>{{ $prodi->jenjang }}</td>
+                                                <td>{{ $prodi->major->name}}</td>
                                                 <td>
                                                     <div class="">
-                                                        <a href="/admin/mahasiswa/{{ $student->uuid }}">
+                                                        <a href="/admin/prodi/{{ $prodi->uuid }}">
                                                             <button class="btn btn-success btn-sm " name="view">
                                                                 <i class="bi bi-eye"></i>
                                                             </button>
                                                         </a>
-                                                        <a href="/admin/mahasiswa/{{ $student->uuid }}/edit">
+                                                        <a href="/admin/prodi{{ $prodi->uuid }}/edit">
                                                             <button class="btn btn-primary btn-sm" name="edit">
                                                                 <i class="bi bi-pencil-square"></i>
                                                             </button>
                                                         </a>
-                                                        <form action="{{ route('mahasiswa.index') }}/{{ $student->uuid }}"
+                                                        <form action="{{ route('prodi.index') }}/{{ $prodi->uuid }}"
                                                             method="POST" class="d-inline">
                                                             @method('delete')
                                                             @csrf

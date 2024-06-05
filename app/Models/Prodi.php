@@ -11,7 +11,7 @@ class Prodi extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
-    protected $with = ['lecturer'];
+    protected $with = ['major'];
 
     public function lecturer(): BelongsTo
     {
@@ -23,9 +23,9 @@ class Prodi extends Model
         return $this->hasMany(Course::class);
     }
 
-    public function student(): BelongsTo
+    public function student(): HasMany
     {
-        return $this->belongsTo(Student::class);
+        return $this->hasMany(Student::class);
     }
 
     public function major(): BelongsTo
