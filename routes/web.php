@@ -8,6 +8,7 @@ use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardDosenController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\MahasiswaDashboardController;
 use App\Http\Controllers\MajorController;
 use App\Http\Controllers\MatkulController;
@@ -44,6 +45,9 @@ Route::controller(PagesController::class)->group(function(){
 
 });
 
+Route::get('/invoice', [InvoiceController::class, 'index'])->name('index');
+Route::get('/invoice/pdf', [InvoiceController::class, 'downloadPDF'])->name('invoice.pdf');
+
 Route::get('/admin/dosens/checkslug', [DashboardDosenController::class, 'checkSlug']);
 Route::resources([
     'admin/matkuls' => MatkulController::class,
@@ -63,3 +67,5 @@ Route::controller(CustomAuthController::class)->group(function(){
     Route::get('/register', [CustomAuthController::class, 'register'])->name('register')->middleware('guest');
     Route::post('/register', [CustomAuthController::class, 'store'])->name('store');
 });
+
+

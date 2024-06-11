@@ -33,7 +33,8 @@ class DatabaseSeeder extends Seeder
             LecturesSeeder::class,
             AcademcSeeder::class,
             ValueSeeder::class,
-            DetailValueSeeder::class
+            DetailValueSeeder::class,
+            InvoiceSeeder::class
         ]);
 
     }

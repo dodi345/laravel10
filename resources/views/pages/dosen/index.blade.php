@@ -16,6 +16,10 @@
                             <button class="btn btn-primary mb-3">
                                 <i class="bi bi-plus-circle"></i> Create New</button>
                         </a>
+                        <a href="{{ route('generatepdf') }}">
+                            <button class="btn btn-primary mb-3">
+                                Export PDF</button>
+                        </a>
                         <!-- Table with stripped rows -->
                         <table class="table datatable table-hover">
                             <thead class="text-center">
@@ -31,16 +35,17 @@
                                 </tr>
                             </thead>
                             <tbody class="">
-                                <?php $no = 1;?>
+                                <?php $no = 1; ?>
                                 @foreach ($dosens as $key => $dosen)
                                     <tr class="justify">
                                         <td class="text-center">{{ $no++ }}</td>
                                         <td>{{ $dosen->name }}</td>
                                         <td>{{ $dosen->nidn }}</td>
-                                        <td><img src="{{ asset($dosen->image) }}" height="60"; width="60" class="rounded-circle"></td>
+                                        <td><img src="{{ asset($dosen->image) }}" height="60"; width="60"
+                                                class="rounded-circle"></td>
                                         <td>{{ $dosen->course->name }}</td>
                                         <td>{{ $dosen->prodi->name }}</td>
-                                        <td>{{ $dosen->major->name}}</td>
+                                        <td>{{ $dosen->major->name }}</td>
                                         <td>
                                             <div class="">
                                                 <a href="/admin/dosens/{{ $dosen->uuid }}">

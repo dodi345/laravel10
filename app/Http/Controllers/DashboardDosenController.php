@@ -7,6 +7,7 @@ use App\Models\Lecturer;
 use App\Models\Major;
 use App\Models\Prodi;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Facades\Storage;
@@ -18,10 +19,11 @@ class DashboardDosenController extends Controller
      */
     public function index()
     {
-        return view('pages.dosen.index', [
+        $data = [
             'title' => 'Dosen',
             'dosens' => Lecturer::get()->all(),
-        ]);
+        ];
+        return view('pages.dosen.index', $data);
     }
 
     /**
@@ -144,5 +146,26 @@ class DashboardDosenController extends Controller
         }
         Lecturer::destroy($dosen->id);
         return redirect('/admin/dosens')->with('success', 'Dosen has been deleted');
+    }
+
+    public function pdf()
+    {
+        return view('pages.dosen.viewpdf');
+    }
+
+    public function generatepdf()
+    {
+        // $mpdf = new \Mpdf\Mpdf();
+
+        // $data = [
+        //     [
+        //         'quantity' => 1,
+        //         'description' => '1 Year Subscription',
+        //         'price' => '129.00'
+        //     ]
+        // ];
+        // $mpdf=PDF::loadView('pages.dosen.viewpdf',['data' => $data])->setOptions(['defaultFont' => 'sans-serif']);
+
+        // return $mpdf->stream('lecturers.pdf');
     }
 }
